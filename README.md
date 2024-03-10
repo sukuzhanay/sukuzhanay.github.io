@@ -5,8 +5,7 @@
 - 🔭 I’m currently teaching **Big Data Projects, Concurrent and Distributed Programming, Statistical Programming Languages**
 - 🌱 I’m currently learning **MLOps, AWS Certified Solutions Architect**
 
-- 👨‍💻 Some of my fun projects are available at [https://sukuzhanay.me/]
-
+- 👨‍💻 Some of my fun projects are available at [https://sukuzhanay.me/](https://medium.com/@sukuzhanay)
 - 📝 I write tech blogs on [https://medium.com/@sukuzhanay](https://medium.com/@sukuzhanay)
 
 - 💬 Ask me about **Python, AWS, GCP, GitHub, Git, Docker, Spark, Hadoop, SQL, Data Engineering, BigQuery, Ionic, **
