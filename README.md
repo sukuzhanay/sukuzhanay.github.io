@@ -3,16 +3,6 @@
 Public site: https://sukuzhanay.github.io/
 Entity Home: https://christiansucuzhanay.com/
 
-A static, responsive personal portfolio built with semantic HTML and CSS. No framework, client-side JavaScript, tracking, or build dependencies.
-
-## Design
-
-Rebuilt from scratch on 2026-09-09. Visually reviewed references:
-- https://ashutoshhathidara.com/ — personal introduction, light background, clear navigation and generous spacing.
-- https://ryanfitzgerald.github.io/devportfolio/ — numbered projects and strong editorial hierarchy.
-
-Original implementation: white/slate surfaces, navy #08111f, restrained amber #f59e0b, discreet GitHub portrait, large project rows and compact supporting sections. No reference code or assets copied.
-
 ## Content evidence
 
 Public repositories were inspected before selection:
