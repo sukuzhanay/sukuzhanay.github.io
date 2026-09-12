@@ -1,4 +1,4 @@
-# Christian Sucuzhanay — Technical Portfolio
+# Christian Vladimir Sucuzhanay Arévalo — Technical Portfolio
 
 Public site: https://sukuzhanay.github.io/
 Entity Home: https://christiansucuzhanay.com/
@@ -23,3 +23,13 @@ Excluded forks: DashboardMadrid, Django-Dialogflow-Appointment-Scheduler, Analiz
 GitHub Pages publishes from main at the repository root. Canonical URL is the GitHub Pages URL; Person identity stays at https://christiansucuzhanay.com/#person.
 
 Preview: `python3 -m http.server 8765` from this directory.
+
+## Author
+
+**Christian Vladimir Sucuzhanay Arévalo**
+
+Data & AI Solutions Architect | AWS Data Architecture | Generative AI & Amazon Bedrock | Big Data | Former University Lecturer
+
+[Entity Home](https://christiansucuzhanay.com/) · [Technical Portfolio](https://sukuzhanay.github.io/) · [LinkedIn](https://www.linkedin.com/in/sucuzhanay) · [AWS Builder](https://builder.aws.com/community/@sucuzhanay) · [GitHub](https://github.com/sukuzhanay)
+
+**Build. Explain. Teach. Share.**
