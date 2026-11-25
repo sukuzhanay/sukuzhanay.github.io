@@ -1,7 +1,7 @@
 name: Notify IndexNow after Pages deployment
 on:
   workflow_run:
-    workflows: [pages-build-deployment]
+    workflows: ['pages build and deployment']
     types: [completed]
     branches: [main]
 permissions:
