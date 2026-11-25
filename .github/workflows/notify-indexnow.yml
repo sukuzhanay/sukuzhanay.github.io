@@ -1,0 +1,46 @@
+name: Notify IndexNow after Pages deployment
+on:
+  workflow_run:
+    workflows: [pages-build-deployment]
+    types: [completed]
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: portfolio-indexnow
+  cancel-in-progress: false
+jobs:
+  notify:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify changed pages and notify IndexNow
+        env:
+          DEPLOYED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          node --input-type=module <<'JS'
+          const host = 'sukuzhanay.github.io';
+          const key = '473f9de81bbba39d6f39cf674fd7de0d';
+          const sha = process.env.DEPLOYED_SHA;
+          if (!/^[0-9a-f]{40}$/.test(sha)) throw new Error('Invalid commit SHA');
+          const headers = {'Accept':'application/vnd.github+json'};
+          const response = await fetch(`https://api.github.com/repos/sukuzhanay/sukuzhanay.github.io/commits/${sha}`, {headers, signal:AbortSignal.timeout(15000)});
+          if (!response.ok) throw new Error(`Commit lookup: ${response.status}`);
+          const commit = await response.json();
+          const changed = new Set(commit.files?.map(f=>f.filename) || []);
+          const paths = [];
+          if (changed.has('index.html') || changed.has('styles.css')) paths.push('/');
+          if (changed.has('topics/aws-data-architecture/index.html') || changed.has('styles.css')) paths.push('/topics/aws-data-architecture/');
+          if (!paths.length) { console.log('No page-content change in deployment head; skipping.'); process.exit(0); }
+          const urlList = paths.map(path=>`https://${host}${path}`);
+          const keyLocation = `https://${host}/${key}.txt`;
+          const proof = await fetch(keyLocation, {signal:AbortSignal.timeout(15000)});
+          if (!proof.ok || (await proof.text()).trim() !== key) throw new Error('Ownership key is not live');
+          for (const url of urlList) {
+            const live = await fetch(url, {signal:AbortSignal.timeout(15000)});
+            if (!live.ok) throw new Error(`Page unavailable: ${url} (${live.status})`);
+          }
+          const result = await fetch('https://api.indexnow.org/indexnow', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({host,key,keyLocation,urlList}), signal:AbortSignal.timeout(30000)});
+          console.log(`IndexNow HTTP ${result.status}; URLs=${urlList.join(",")}; indexing is not guaranteed.`);
+          if (![200,202].includes(result.status)) throw new Error(await result.text());
+          JS
